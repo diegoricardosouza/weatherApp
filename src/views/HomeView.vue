@@ -5,7 +5,7 @@
         v-model="searchQuery"
         @input="getSearchResults"
         type="text"
-        placeholder="Search for a city or state"
+        placeholder="Pesquise uma cidade ou estado"
         class="py-2 px-1 w-full  bg-transparent border-b focus:border-weather-secondary focus:outline-none focus:shadow-[0px_1px_0_0_#004E71]"
       >
 
@@ -13,9 +13,9 @@
         class="absolute bg-weather-secondary text-white w-full shadow-md py-2 px-2 top-[66px]"
         v-if="mapboxSearchResults"
       >
-        <p v-if="searchError">Sorry, something went wrong, please try again.</p>
+        <p v-if="searchError">Desculpe, algo deu errado. Tente novamente.</p>
 
-        <p v-if="!serverError && mapboxSearchResults.length === 0">No results match your query, try a different term.</p>
+        <p v-if="!searchError && mapboxSearchResults.length === 0">Nenhum resultado corresponde à sua consulta. Tente um termo diferente.</p>
         <template v-else>
           <li
             v-for="searchResult in mapboxSearchResults"
@@ -29,10 +29,20 @@
         </template>
       </ul>
     </div>
+
+    <div class="flex flex-col gap-4">
+      <Suspense>
+        <CityList />
+        <template #fallback>
+          <p>Loading...</p>
+        </template>
+      </Suspense>
+    </div>
   </main>
 </template>
 
 <script setup>
+import CityList from '@/components/CityList.vue';
 import axios from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';

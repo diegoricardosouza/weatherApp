@@ -4,7 +4,7 @@
       class="text-white p-4 bg-weather-secondary w-full text-center"
     >
       <p>
-        You are currently previewing this city, click the "+" icon to start tracking this city.
+        Você está visualizando esta cidade no momento, clique no ícone "+" para começar a rastrear esta cidade.
       </p>
     </div>
 </template>
