@@ -1,6 +1,7 @@
 export function fahrenheitToCelsius(fahrenheit) {
-  const converter = (Math.round(fahrenheit) - 32) * 5 / 9;
-  return String(converter).slice(0, 2)
+  const converter = (fahrenheit - 32) * 5 / 9;
+  // return String(converter).slice(0, 2)
+  return Math.round(converter)
 }
 
 export function converterDateFull(date) {
